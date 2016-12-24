@@ -1,0 +1,127 @@
+html,body *{ font-family: 'Varela Round', sans-serif!important; }
+
+
+
+#chat{
+	height: 500px;
+}
+
+#contentWarp{ display: none; }
+
+#chatWarp{
+	float: left;
+	border: 1px #000 solid;
+	overflow-y: scroll;
+    width: 241.05px;
+}
+
+.error{
+	color: red;
+}
+.whisper{
+	color: gray;
+	font-style:italic;	
+}
+#users{
+    list-style-type: none;
+}
+.myUser{
+	color: green;
+	font-weight: bold;
+}
+#send-message{
+	position: absolute;
+}
+.disconnect{
+	color: red;
+	font-style:italic;	
+}
+.newUser{
+	color: green; 
+	font-style:italic;	
+}
+.start{
+	opacity: 0;
+    transition: opacity 1s;
+}
+
+.openWin{
+	opacity: 1;
+    background-color: #D6D3D3;
+    box-shadow: 0px 0px 5px #888888;
+    width: 430px;
+    height: 250px;
+    border-radius: 10px;
+    transition: opacity 1s;
+}
+#nickWarp{
+    background-color: #D6D3D3;
+    width: 430px;
+    height: 250px;
+}
+
+#nickError{
+    width: 300px;
+    font-size: 15px;
+    margin: 0;
+    opacity: 0;
+    color: red;
+    transition: all 1s;
+}
+
+#nickError.on{
+	opacity: 1;
+    transition: all 1s;
+}
+.input{ 
+	width: 100%;
+    height: 50px;
+    font-size: 25px;
+ }
+
+.submit{
+	margin-top: 10px;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translate(-50%);
+	    -moz-transform: translate(-50%);
+	     -ms-transform: translate(-50%);
+	      -o-transform: translate(-50%);
+	         transform: translate(-50%); 
+}
+
+.title{
+    position: absolute;
+    font-size: 36px;
+    margin-top: 0.5em;
+}
+
+.centerP{
+	position: absolute;	
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	   -moz-transform: translate(-50%,-50%);
+	    -ms-transform: translate(-50%,-50%);
+	     -o-transform: translate(-50%,-50%);
+	        transform: translate(-50%,-50%);
+}
+
+.submit {
+    background-color: white;
+    color: black;
+    border: 1px solid #555555;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: #555555;
+    color: white;
+}

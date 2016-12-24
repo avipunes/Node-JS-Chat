@@ -1,0 +1,12 @@
+{
+	"name" : "avichat1",
+	"version" : "1.0.1",
+	"scripts" : {
+		"start" :"node app.js"
+	},
+	"dependencies":{
+		"express": "4.13.3"
+	},
+	"author" : "Avi punes",
+	"license": "ISC"
+}
