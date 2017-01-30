@@ -1,36 +1,100 @@
 html,body *{ font-family: 'Varela Round', sans-serif!important; }
 
-
-
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: rgba(146, 144, 144, 0.43);
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
 #chat{
-	height: 500px;
+    min-height: 500px;
+	background-color: rgba(116, 116, 116, 0.77);
+    background-size: inherit;
 }
 
-#contentWarp{ display: none; }
+#contentWarp{ display: none; background-image: url("../images/lego.jpg"); background-size: cover; background-repeat: no-repeat; height: 100%; }
 
 #chatWarp{
-	float: left;
-	border: 1px #000 solid;
+    height: 500px;
+    border-top: 1px rgba(146, 144, 144, 0.43) solid;
 	overflow-y: scroll;
-    width: 241.05px;
+    box-shadow: 10px 1px 2em #fff;
 }
 
+#contentWarp .chatWarp ,#contentWarp .users {
+    margin-top: 10%;
+    padding-left: 0;
+}
+
+#chat span {
+    margin-left: 10px;
+}
+
+.divider{
+    height: 15px;
+}
+.msg{
+    color: cornsilk;
+    border: 1px solid rgba(255, 233, 173, 0.31);
+    border-radius: 8px;
+    padding: 5px;
+    display: inline-block;
+}
 .error{
 	color: red;
 }
 .whisper{
-	color: gray;
-	font-style:italic;	
+    color: #5c5e54;
+    font-style: italic;
+    border: 1px dotted rgba(100, 100, 100, 0.50);
+    border-radius: 8px;
+    padding: 5px;
+    display: inline-block;3
 }
 #users{
     list-style-type: none;
+    margin-right: 0;
+    padding: 15px;
+    overflow-y: scroll;
+    height: 500px;
+    background-color: rgba(116, 116, 116, 0.77);
+    border: 1px solid rgba(186, 182, 182, 0.61);
+    border-radius: 30px 0 0 30px;
+    box-shadow: -13px 1px 3em #fff;
+}
+.user{
+    margin-top: 10px;
+    margin-left: 50px;
+    list-style-type: circle;
+    color: wheat;
 }
 .myUser{
-	color: green;
-	font-weight: bold;
+    color: beige;
+    font-weight: bold;
+}
+
+.text input{ width: 100%; height: 40px; }
+.text { padding-right: 0!important; }
+.submitContainer { padding-left: 0.1em!important; }
+.submitContainer .submit { width: 100%; height: 43px; }
+
+textarea {
+    max-width: 100%!important;
+    height: 42px!important;
+    min-height: 10px!important;
+}
+.userTitle{
+    color: #625f49;
 }
 #send-message{
-	position: absolute;
+	margin-top: 5px;
 }
 .disconnect{
 	color: red;
@@ -56,8 +120,9 @@ html,body *{ font-family: 'Varela Round', sans-serif!important; }
 }
 #nickWarp{
     background-color: #D6D3D3;
-    width: 430px;
-    height: 250px;
+    width: 100%;
+    max-width: 430px;
+    height: 310px;
 }
 
 #nickError{
@@ -79,7 +144,7 @@ html,body *{ font-family: 'Varela Round', sans-serif!important; }
     font-size: 25px;
  }
 
-.submit{
+.submitFirst{
 	margin-top: 10px;
 	position: absolute;
 	left: 50%;
@@ -93,6 +158,7 @@ html,body *{ font-family: 'Varela Round', sans-serif!important; }
 .title{
     position: absolute;
     font-size: 36px;
+    line-height: 40px;
     margin-top: 0.5em;
 }
 
@@ -107,11 +173,11 @@ html,body *{ font-family: 'Varela Round', sans-serif!important; }
 	        transform: translate(-50%,-50%);
 }
 
-.submit {
+.submit, .submitFirst {
     background-color: white;
     color: black;
     border: 1px solid #555555;
-    padding: 10px 20px;
+    padding: 3px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -121,7 +187,24 @@ html,body *{ font-family: 'Varela Round', sans-serif!important; }
     cursor: pointer;
 }
 
-.submit:hover {
-    background-color: #555555;
+.submit:hover, .submitFirst:hover {
+    background-color: rgba(186, 182, 182, 0.61);
     color: white;
+}
+
+pre{
+    display: inline-flex;
+    word-wrap: break-word;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
+img.profileImg {
+    float: right;
+    transform: translateY(-80%);
+    border-radius: 25px;
+    width: 35px;
 }

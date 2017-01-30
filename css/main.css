@@ -4,10 +4,35 @@
 	body{ overflow-x: hidden;	background-image: url(../images/Background.jpg); background-size: contain;}
 	.first { font-weight: bold; text-decoration: underline; margin-top: 10px; }
 	.content{ margin-top: 170px; margin-bottom: 50px;	}
+	html, body { overflow: hidden!important; }
+
 }
 /* Small only */
 @media screen and (max-width: 39.9375em) {
+	html{ min-height: 500px; }
+
 	.show-for-large-up{display: none;}
+	
+	.users.show { position: absolute; height: 60px; bottom: 80px; width: 75px; transition: all 0.2s; right: 10%;}
+	
+	#users { height: inherit; border-radius: 30px; overflow: hidden;  transition: all 0.2s;}
+
+	.users.show.clicked {
+		height: 200px!important;
+		bottom: 80px;
+		width: 70%!important;
+		transition: all 0.2s;
+    }
+	
+	#users.clicked { overflow-y: scroll!important; transition: all 0.2s;}
+	
+	.nickF{ width: 90%; }
+	
+	input { font-size: 19px!important; }
+	
+	.submitContainer .submit { font-size: 9px!important; }
+	
+	.chatWarp{ padding-right: 0!important; margin-top: 0!important; }
 }
 /*Small & Medium*/
 @media screen and (min-width: 0) and (max-width: 63.9375em){

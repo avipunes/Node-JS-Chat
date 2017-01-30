@@ -3,13 +3,18 @@
 <head>
 	<title>My Chat App</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/foundation.css">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    
+  
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+	
+	<script src="js/touch.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/push.js-master/push.min.js"></script>
@@ -20,28 +25,42 @@
 <div id="nickWarp" class="row start centerP">
 	<div class="columns small-12">
 		<h1 class="title">Welcome to Avi's chat !</h1>
-		<div class="centerP">
+		<div class="centerP nickF">
 			<p id="nickError">that user name is already taken! try again.</p>
 			<form id="setNick">
 				<input size="35" id="nickname" class="input" placeholder="Enter a nickname">
-				<input type="submit" class="submit">
+				<input type="submit" class="submitFirst">
+				<!-- Facebook login or logout button -->
+				<a href="javascript:void(0);" onclick="fbLogin()" id="fbLink"><div class="fb-login-button" data-max-rows="1" data-size="icon" data-show-faces="false" data-auto-logout-link="false"></div></a>
 			</form>
 		</div>			
 	</div>
 </div>
 
+<!-- Display login status -->
+<div id="status"></div>
 
+<!-- Display user profile data -->
+<div id="userData"></div>
 
 <div id="contentWarp">
-	<div class="columns small-12">
-		<div id="chatWarp">
-			<div id="chat"></div>
+	<div class="row">
+		<div class="small-12 medium-9 columns chatWarp">
+			<div id="chatWarp">
+				<div id="chat"></div>
+			</div>
 			<form id="send-message">
-				<input size="35" id="message" placeholder="Message...">
-				<input type="submit" class="submit">
+				<div class="row">
+					<div class="small-4 columns submitContainer"><input type="submit" class="submit" id="submit"></div>
+					<div class="small-8 columns text">
+					<textarea rows="1" cols="100%" name="" id="message" placeholder="Message..."></textarea>
+					</div>
+				</div>
 			</form>
 		</div>
-		<ul id="users"></ul>
+		<div id="usersWarp" class="small-12 medium-3 users show">
+			<ul id="users"></ul>
+		</div>
 	</div>
 </div>
 <audio id="newMsg">

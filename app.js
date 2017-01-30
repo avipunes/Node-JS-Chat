@@ -5,15 +5,15 @@ var express = require('express'),
 	users = {};
 
 var port = process.env.PORT || 8080;
-
 server.listen(port);
 
 app.get('/',function(req,res) {
 	res.sendfile(__dirname + '/index.html');
 });
 app.use("/js", express.static(__dirname + '/js'));
-app.use("/css", express.static(__dirname + '/css'));
 app.use("/sounds", express.static(__dirname + '/sounds'));
+app.use("/css", express.static(__dirname + '/css'));
+app.use("/images", express.static(__dirname + '/images'));
 
 io.sockets.on('connection', function (socket) {
 
@@ -34,6 +34,8 @@ io.sockets.on('connection', function (socket) {
 	}
 
 	socket.on('send message', function(data, callback) {
+		data = data.replace(/</g,'&lt;');
+		data = data.replace(/>/g,'&gt;');
 		var msg = data.trim();
 		if (msg.substr(0,2) === '/w') {
 			msg = msg.substr(3)
@@ -53,6 +55,10 @@ io.sockets.on('connection', function (socket) {
 			io.sockets.emit('new message', data, socket.nickname);
 		}
 
+	});
+	socket.on('facebook data', function(data, callback) {
+		socket.img = data.picture.data.url;
+		callback(socket.img);
 	});
 
 	socket.on('disconnect', function(data){
