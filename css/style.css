@@ -204,7 +204,6 @@ pre{
 
 img.profileImg {
     float: right;
-    transform: translateY(80%);
     border-radius: 25px;
     width: 35px;
 }
