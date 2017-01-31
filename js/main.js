@@ -58,10 +58,11 @@ jQuery(function($){
 
 	socket.on('usernames', function(data){
 		var html = '';
-		console.log(data);
 		html += '<span class="userTitle">Users:</span>'
 		for (var i = 0 ; i < data.length ; i++) {
-			if (data[i] === $myNick) {
+			if (data[i].indexOf("https://fb")>= 0) {
+    			html +='<img src="' + data[i] + '" class="profileImg"/>';
+			}else if (data[i] === $myNick) {
 				html += '<li id="myUserId" class="user myUser">' + data[i] + '</li>';
 			}else{
 				html += '<li class="user">' + data[i] + '</li>';
@@ -72,7 +73,7 @@ jQuery(function($){
         $('.user').on('click <taphold></taphold>', function(event) {
         	event.preventDefault();
         	var user = $(this)[0].innerHTML;
-            $messageBox.val('/w '+user +' ');
+            $messageBox.val('/w '+user +', ');
 			 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 			 // some code..
 			}else{
@@ -94,7 +95,7 @@ jQuery(function($){
 		$chat.append('<span class="newUser"><b>' +nName + ': </b>' + data + '</span><div class="divider"></div>');
 	});
 
-	socket.on('new message', function(data , nName){
+	socket.on('new message', function(data , nName, userImg){
 		if (nName!= $myNick) {
 				$('#newMsg')[0].play();
 			Push.create('New Message From '+nName, {
@@ -107,10 +108,14 @@ jQuery(function($){
 			    }
 			});
 		}
-		$chat.append('<span class="msg"><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+		if(userImg){
+			$chat.append('<span class="msg"><img src="' + userImg + '" class="profileImgChat"/><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+		}else{
+			$chat.append('<span class="msg"><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+		}
 	});
 
-	socket.on('whisper', function(data, nName){
+	socket.on('whisper', function(data, nName , WhisperUserImg){
 		if (nName!= $myNick) {
 				$('#newMsg')[0].play();
 			Push.create('New Whisper Message From '+nName, {
@@ -123,7 +128,11 @@ jQuery(function($){
 			    }
 			});
 		}
-		$chat.append('<span class="whisper"><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+		if(userImg){
+			$chat.append('<span class="msg"><img src="' + WhisperUserImg + '" class="profileImgChat"/><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+		}else{
+			$chat.append('<span class="msg"><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+		}
 	});
 
 	socket.on('user disconnect', function(data , nName){
@@ -195,15 +204,14 @@ function getFbUserData(){
     function (response) {
 		if (response) {
 			socket.emit('facebook data', response, function(data){
-				console.log(data);
 				setTimeout(function() {
-	    			$('<img src="' + data + '" class="profileImg"/>').insertAfter( "#myUserId" );
+	    			// $('<img src="' + data + '" class="profileImg"/>').insertAfter( "#myUserId" );/
 				},1000);
 			});
 		}    	
-		$submitButton = $('.submitFirst');
+		var $firsrSubmitButton = $('.submitFirst');
     	$nickBox.val(response.first_name +' '+ response.last_name);
-    	$submitButton.trigger("click");
+    	$firsrSubmitButton.trigger("click");
     });
 }
 
