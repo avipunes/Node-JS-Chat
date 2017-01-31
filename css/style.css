@@ -204,7 +204,12 @@ pre{
 
 img.profileImg {
     float: right;
-    transform: translateY(-80%);
+    transform: translateY(10%);
     border-radius: 25px;
     width: 35px;
+}
+img.profileImgChat {
+    border-radius: 25px;
+    width: 35px;
+    margin-right: 10px;
 }
