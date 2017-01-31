@@ -39,12 +39,12 @@ io.sockets.on('connection', function (socket) {
 		var msg = data.trim();
 		if (msg.substr(0,2) === '/w') {
 			msg = msg.substr(3)
-			var ind = msg.indexOf(' ');
+			var ind = msg.indexOf(', ');
 			if (ind != -1) {
 				var name = msg.substr(0, ind);
 				var msg = msg.substr(ind + 1);
 				if(name in users){
-					users[name].emit('whisper', msg, socket.nickname)
+					users[name].emit('whisper', msg, socket.nickname, socket.img);
 				}else{
 					callback('Error no such user.')
 				}
@@ -52,19 +52,20 @@ io.sockets.on('connection', function (socket) {
 				callback('Error Please enter a message for your whisper.');
 			}
 		}else{
-			io.sockets.emit('new message', data, socket.nickname);
+			io.sockets.emit('new message', data, socket.nickname, socket.img);
 		}
 
 	});
 	socket.on('facebook data', function(data, callback) {
 		socket.img = data.picture.data.url;
-		callback(socket.img);
+		users[socket.img] = socket.img;
 	});
 
 	socket.on('disconnect', function(data){
 		if (!socket.nickname) return;
 		io.sockets.emit('user disconnect', 'Has disconnect', socket.nickname);
 		delete users[socket.nickname];
+		delete users[socket.img];
 		updateNicknames();
 	});
 });
