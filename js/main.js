@@ -96,7 +96,7 @@ jQuery(function($){
 		$chat.append('<span class="newUser"><b>' +nName + ': </b>' + data + '</span><div class="divider"></div>');
 	});
 
-	socket.on('new message', function(data , nName){
+	socket.on('new message', function(data , nName, userImg){
 		if (nName!= $myNick) {
 				$('#newMsg')[0].play();
 			Push.create('New Message From '+nName, {
@@ -109,14 +109,15 @@ jQuery(function($){
 			    }
 			});
 		}
-		if($userImg){
-			$chat.append('<span class="msg"><img src="' + $userImg + '" class="profileImgChat"/><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+		console.log(userImg);
+		if(userImg){
+			$chat.append('<span class="msg"><img src="' + userImg + '" class="profileImgChat"/><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
 		}else{
 			$chat.append('<span class="msg"><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
 		}
 	});
 
-	socket.on('whisper', function(data, nName){
+	socket.on('whisper', function(data, nName, userImg){
 		if (nName!= $myNick) {
 				$('#newMsg')[0].play();
 			Push.create('New Whisper Message From '+nName, {
@@ -129,8 +130,8 @@ jQuery(function($){
 			    }
 			});
 		}
-		if($userImg){
-			$chat.append('<span class="msg"><img src="' + $userImg + '" class="profileImgChat"/><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+		if(userImg){
+			$chat.append('<span class="msg"><img src="' + userImg + '" class="profileImgChat"/><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
 		}else{
 			$chat.append('<span class="msg"><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
 		}
@@ -207,7 +208,7 @@ function getFbUserData(){
 			socket.emit('facebook data', response, function(data){
 				setTimeout(function() {
 	    			// $('<img src="' + data + '" class="profileImg"/>').insertAfter( "#myUserId" );/
-					$userImg = data;
+
 				},1000);
 			});
 		}    	
