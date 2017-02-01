@@ -16,7 +16,7 @@ app.use("/css", express.static(__dirname + '/css'));
 app.use("/images", express.static(__dirname + '/images'));
 
 io.sockets.on('connection', function (socket) {
-
+	socket.img=null;
 	socket.on('new user', function(data, callback) {
 		if (data in users) { 
 			callback(false);
@@ -24,7 +24,7 @@ io.sockets.on('connection', function (socket) {
 			callback(true);
 			socket.nickname = data;
 			users[socket.nickname] = socket;
-			io.sockets.emit('new user', 'Has connected', socket.nickname);
+			io.sockets.emit('new user', 'Has connected', socket.nickname, socket.img);
 			updateNicknames();
 		}
 	});
@@ -63,7 +63,7 @@ io.sockets.on('connection', function (socket) {
 
 	socket.on('disconnect', function(data){
 		if (!socket.nickname) return;
-		io.sockets.emit('user disconnect', 'Has disconnect', socket.nickname);
+		io.sockets.emit('user disconnect', 'Has disconnect', socket.nickname, socket.img);
 		delete users[socket.nickname];
 		delete users[socket.img];
 		updateNicknames();
