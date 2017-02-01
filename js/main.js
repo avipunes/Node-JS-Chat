@@ -131,9 +131,9 @@ jQuery(function($){
 			});
 		}
 		if(userImg){
-			$chat.append('<span class="msg"><img src="' + userImg + '" class="profileImgChat"/><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+			$chat.append('<span class="whisper"><img src="' + userImg + '" class="profileImgChat"/><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
 		}else{
-			$chat.append('<span class="msg"><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
+			$chat.append('<span class="whisper"><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
 		}
 	});
 
