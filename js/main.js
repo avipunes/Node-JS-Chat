@@ -99,17 +99,30 @@ jQuery(function($){
 	socket.on('new message', function(data , nName, userImg){
 		if (nName!= $myNick) {
 				$('#newMsg')[0].play();
-			Push.create('New Message From '+nName, {
-			    body: data,
-			    icon: 'js/push.js-master/logo.png',
-			    timeout: 4000,
-			    onClick: function () {
-			        window.focus();
-			        this.close();
-			    }
-			});
+			if (userImg) {
+				Push.create('New Message From '+nName, {
+				    body: data,
+				    icon: userImg,
+				    timeout: 4000,
+				    onClick: function () {
+				        window.focus();
+				        this.close();
+				    }
+				});
+			}else{
+				Push.create('New Message From '+nName, {
+				    body: data,
+				    icon: 'js/push.js-master/logo.png',
+				    timeout: 4000,
+				    onClick: function () {
+				        window.focus();
+				        this.close();
+				    }
+				});				
+			}
+
 		}
-		console.log(userImg);
+		// console.log(userImg);
 		if(userImg){
 			$chat.append('<span class="msg"><img src="' + userImg + '" class="profileImgChat"/><b>' +nName + ': </b>' + '<pre>' + data + '</pre>' + '</span><div class="divider"></div>');
 		}else{
@@ -202,8 +215,7 @@ function fbLogin() {
 
 // Fetch the user profile data from facebook
 function getFbUserData(){
-    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
-    function (response) {
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},function (response) {
 		if (response) {
 			socket.emit('facebook data', response, function(data){
 				setTimeout(function() {
