@@ -209,12 +209,14 @@ img.profileImgChat {
 }
 
 img.profileImg {
-    float: right;
+    position: absolute;
+    right: 10%;
+    display: block;
     border-radius: 25px;
     width: 35px;
-    -webkit-transform: translateY(85%);
-       -moz-transform: translateY(85%);
-        -ms-transform: translateY(85%);
-         -o-transform: translateY(85%);
-            transform: translateY(85%);
+    -webkit-transform: translateY(50%);
+       -moz-transform: translateY(50%);
+        -ms-transform: translateY(50%);
+         -o-transform: translateY(50%);
+            transform: translateY(50%);
 }
