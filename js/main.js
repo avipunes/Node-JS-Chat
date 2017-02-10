@@ -164,12 +164,28 @@ jQuery(function($){
 
 
 
-	$("#usersWarp").draggable();
+	// $("#usersWarp").draggable();
 
-	$("#users").on('click', function(){
+	// $("#users").on('click', function(){
+	// 	$("#usersWarp").toggleClass('clicked');
+	// 	$users.toggleClass('clicked');
+	// });
+
+	  var draggable = document.getElementById('usersWarp');
+	  draggable.addEventListener('touchmove', function(event) {
+	    var touch = event.targetTouches[0];
+	    // Place element where the finger is
+	    draggable.style.left = touch.pageX  - (25) + 'px';
+	    draggable.style.top = touch.pageY - (25) + 'px';
+	    event.preventDefault();
+	  }, false);
+
+	  draggable.addEventListener('click',function(event) {
+	  	console.log("click");
+	  	
 		$("#usersWarp").toggleClass('clicked');
 		$users.toggleClass('clicked');
-	});
+	  });
 
 	window.fbAsyncInit = function() {
 	    // FB JavaScript SDK configuration and setup
