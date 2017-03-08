@@ -223,14 +223,11 @@ function getFbUserData(){
 
 				},1000);
 			});
-		}    	
+		}
 		var $firsrSubmitButton = $('.submitFirst');
     	$nickBox.val(response.first_name +' '+ response.last_name);
     	$firsrSubmitButton.trigger("click");
     });
-	var $firsrSubmitButton = $('.submitFirst');
-	$nickBox.val(response.first_name +' '+ response.last_name);
-	$firsrSubmitButton.trigger("click");
 }
 
 // Logout from facebook
