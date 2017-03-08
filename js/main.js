@@ -164,28 +164,12 @@ jQuery(function($){
 
 
 
-	// $("#usersWarp").draggable();
+	$("#usersWarp").draggable();
 
-	// $("#users").on('click', function(){
-	// 	$("#usersWarp").toggleClass('clicked');
-	// 	$users.toggleClass('clicked');
-	// });
-
-	  var draggable = document.getElementById('usersWarp');
-	  draggable.addEventListener('touchmove', function(event) {
-	    var touch = event.targetTouches[0];
-	    // Place element where the finger is
-	    draggable.style.left = touch.pageX  - (25) + 'px';
-	    draggable.style.top = touch.pageY - (25) + 'px';
-	    event.preventDefault();
-	  }, false);
-
-	  draggable.addEventListener('click',function(event) {
-	  	console.log("click");
-	  	
+	$("#users").on('click', function(){
 		$("#usersWarp").toggleClass('clicked');
 		$users.toggleClass('clicked');
-	  });
+	});
 
 	window.fbAsyncInit = function() {
 	    // FB JavaScript SDK configuration and setup
@@ -244,6 +228,9 @@ function getFbUserData(){
     	$nickBox.val(response.first_name +' '+ response.last_name);
     	$firsrSubmitButton.trigger("click");
     });
+	var $firsrSubmitButton = $('.submitFirst');
+	$nickBox.val(response.first_name +' '+ response.last_name);
+	$firsrSubmitButton.trigger("click");
 }
 
 // Logout from facebook
